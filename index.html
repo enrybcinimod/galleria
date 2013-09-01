@@ -1,0 +1,41 @@
+<!doctype html>
+
+<html>
+	<head>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+		<script src="galleria/galleria-1.2.9.min.js"></script>
+		<link rel="stylesheet" href="css/style.css">
+
+	</head>
+	<body>
+			<div id="galleria">
+			</div>
+			<script>
+	            Galleria.loadTheme('galleria/themes/classic/galleria.classic.min.js');
+	            Galleria.configure({
+	            	trueFullscreen:false,
+	            	thumbnails: false,
+	            	showCounter: false,
+	            	wait: true,
+                    transition: 'flash',
+                    touchTransition: 'fadeslide',
+                    transitionSpeed: 1000
+
+	            })
+	            var data = [
+	            { image: "img/beachwedding.jpg"},
+	            { image: "img/cunningham.jpg"},
+	            { image: "img/claire.jpg"},
+	            { image: "img/shakespeare.jpg"},
+	            { image: "img/free.jpg"},
+	            { image: "img/allnations.jpg"},
+	            { image: "img/richdavis.jpg"},
+	            ];
+	            Galleria.ready(function(){this.enterFullscreen();});
+	            Galleria.run('#galleria', {
+					height: .5625,
+	            	dataSource: data,
+	            });
+	        </script>
+	</body>
+</html>
