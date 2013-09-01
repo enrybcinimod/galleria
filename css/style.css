@@ -3,3 +3,14 @@ body {
     background-image:url('subtle_white_feathers.png');
 }
 
+
+#jquery_jplayer_1,
+#jp_container_1,
+.jp-type-playlist,
+.jp-gui,
+.jp-interface,
+.jp-controls,
+.ul-playlist {
+	z-index: 100000 !important;
+}
+
