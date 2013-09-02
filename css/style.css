@@ -13,15 +13,3 @@ body {
 	z-index: 100000 !important;
 }
 
-.jp-playlist,
-.ul-playlist {
-	z-index: -100000 !important;
-	opacity: 0;
-}
-
-
-div#cwrap {
-	opacity: 1 !important;
-	z-index: 100000 !important;
-	position: absolute;
-}
