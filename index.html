@@ -41,7 +41,7 @@
 			</div>
 			<script>
 	            Galleria.configure({
-	            	
+	            	trueFullscreen:false,
 	            	thumbnails: false,
 	            	showCounter: false,
 	            	wait: true,
@@ -122,7 +122,7 @@
                 { image: "img/emandhailey.jpg"},
                 { image: "img/rayandtess.jpg"}
 	            ];
-	            
+	            Galleria.ready(function(){this.enterFullscreen();});
 	            Galleria.run('#galleria', {
 					height: .5625,
 	            	dataSource: data,
@@ -179,7 +179,7 @@
     <div id="actions">
 
 
-        <button style="margin-left:14em;" onclick='if($("#cont1").get(0).isClosed) $("#cont1").containerize("open",500); else $("#cont1").containerize("close",500);'>Credits</button>
+        <button onclick='if($("#cont1").get(0).isClosed) $("#cont1").containerize("open",500); else $("#cont1").containerize("close",500);'>Credits</button>
        <button onclick='if($("#cont3").get(0).isClosed) $("#cont3").containerize("open",500); else $("#cont3").containerize("close",500);'>Track List</button>
     </div>
 
