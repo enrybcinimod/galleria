@@ -5,20 +5,22 @@
 
 
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.js"></script>
 		<script type="text/javascript" src="js/jquery.slidepanel.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/jquery.slidepanel.css">
         <link href="skin/blue.monday/jplayer.blue.monday.css" rel="stylesheet" type="text/css" />
+        <link href='css/mb.containerPlus.css' rel='stylesheet' type='text/css'>
 		<script src="galleria/galleria-1.2.9.min.js"></script>
         <link rel="stylesheet" href="galleria/themes/classic/galleria.classic.css">
         <script src="galleria/themes/classic/galleria.classic.min.js"></script>
-
         <script type="text/javascript" src="js/jquery.jplayer.min.js"></script>
         <script type="text/javascript" src="js/jplayer.playlist.min.js"></script>
+        <script type="text/javascript" src="inc/jquery.mb.containerPlus.js"></script>
+        <script type="text/javascript" src="inc/mb.containerPlus.plugins.js"></script>
         
 
 
 	</head>
-
 	<body>
 
 
@@ -166,100 +168,206 @@
                         <li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
                     </ul>
                 </div>
-                <div class="jp-playlist">
-                    <ul>
-                        <li></li>
-                    </ul>
-                </div>
                 <div class="jp-no-solution">
                     <span>Update Required</span>
                     To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
                 </div>
+
+        <div id="wrapper">
+
+
+    <div id="actions">
+
+
+        <button onclick='if($("#cont1").get(0).isClosed) $("#cont1").containerize("open",500); else $("#cont1").containerize("close",500);'>Credits</button>
+       <button onclick='if($("#cont3").get(0).isClosed) $("#cont3").containerize("open",500); else $("#cont3").containerize("close",500);'>Track List</button>
+    </div>
+
+    <div id="cont1" class="container" style=" top:130px; left: 7em; height: 30em; width: 50em; opacity:1" data-drag=true  data-collapsable=true data-close=true data-containment="document" data-buttons="close">
+        <h2>Credits</h2>
+        <br>
+        <p><br><br><h4>Beloved by New Gods</h4>Produced by Dominic Byrne, Adrian Beltrame, Anna Laverty</p>
+        <br>
+        <p>Music by New Gods, Words By D. Byrne<br>
+            Bass-Rich Bradbeer<br>
+            Drums-Sam Raines<br>
+            Keys-Dale Packard<br>
+            Guitar-Dominic Byrne<br>
+            Guitar-Adrian Beltrame<br>
+            Horns-Liam Mcgorry, <br>
+            Strings-Sophie de Tempora
+        </p>
+    </div>
+
+
+    <div id="cont3" class="container" style=" top:2em; left: 5em; height: 16em; width: 17em; opacity:.93; font-size:2em" data-skin="black" data-drag=true data-dock="dock" data-collapsable=true data-containment="document" data-close=true data-draggrid="100,100" data-rememberme=true data-buttons="close">
+        
+                <div class="jp-playlist" style="margin-top:1.2em;">
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+    </div>
+
+    <div id="dock"></div>
+
+</div>
+
             </div>
         </div>
+<script>
+    $(function(){
 
+        /*
+         * Example of custom method added to the component
+         *
+         * */
+
+        $.containerize.addMethod("showdata",function(){
+            var el = this;
+            var txt = "container properties:<br><br>";
+            var data = el.$.data();
+            for (var i in data){
+                txt += i+"= "+ data[i]+"<br>";
+            }
+            txt += "<hr><br>"
+            el.content.prepend(txt);
+        });
+
+
+        /*
+         * Example of how to add a new button for the button bar:
+         *
+         * */
+
+        var newBtns = {
+            changecontent: {
+                idx:"changecontent",
+                label:"&#xe044;",
+                className:"",
+                action: function(container,btn){$(container).containerize("changecontent","/newContent.php",{id:01, temp:'simple'})}
+            }
+        }
+        $.extend($.containerize.defaultButtons, newBtns);
+
+
+        /***********************************************/
+
+        $(".container").containerize({
+            onLoad: function(el){} //$(el).css({opacity:.7})
+        });
+
+        /*
+         * Example of custom Buttons for the toolbar
+         *
+         * */
+        var changeSkinBtn = {
+            idx: "changeSkinBtn",
+            label: "change skin",
+            className:"",
+            action: function(el, btn){
+                if(!$(el).hasClass('black'))
+                    $(el).containerize('skin','black', el.$.data("skin"));
+                else
+                    $(el).containerize('skin');
+            }
+        }
+
+        var iconizeBtn = {
+            idx: "iconizeBtn",
+            label: "iconize",
+            className:"",
+            action: function(el, btn){
+                $(el).containerize("iconize");
+            }
+        }
+
+        var dockBtn = {
+            idx: "dockBtn",
+            label: "dock",
+            className:"",
+            action: function(el, btn){
+                $(el).containerize("iconize","dock");
+            }
+        }
+
+        var closeBtn = {
+            idx: "closeBtn",
+            label: "close",
+            className:"",
+            action: function(el, btn){
+                $(el).containerize("close");
+            }
+        }
+
+
+    })
+
+</script>
         
 
-            <script type="text/javascript">
-//<![CDATA[
-$(document).ready(function(){
+        <script type="text/javascript">
+            //<![CDATA[
+            $(document).ready(function(){
 
-    new jPlayerPlaylist({
-        jPlayer: "#jquery_jplayer_1",
-        cssSelectorAncestor: "#jp_container_1"
-    }, [
-        {
-                    title:"Beneath the World",
-                    mp3:"music/IntroAndBeneath.mp3",
-                },
-                {
-                    title:"Joy and Pain",
-                    mp3:"music/JOY & PAIN MM4.mp3",
-                },
-                {
-                    title:"Sky Man",
-                    mp3:"music/SKY MAN MM5.mp3",
-                },
-                {
-                    title:"Turning To White",
-                    mp3:"music/turning to white aug 2.mp3",
-                },
-                {
-                    title:"I Love You Too",
-                    mp3:"music/I LOVE YOU TOO MM3.mp3",
-                },
-                {
-                    title:"Caravan Park",
-                    mp3:"music/CARAVAN PARK DOM MIX 1.mp3",
-                },
-                {
-                    title:"Too High",
-                    mp3:"music/TOO HIGH COMP.mp3",
-                },
-                {
-                    title:"Step into the Light",
-                    mp3:"music/STEP INTO THE LIGHT MM COMP.mp3",
-                },
-                {
-                    title:"Eyes of Love",
-                    mp3:"music/SKY MAN MM5.mp3",
-                },
-                {
-                    title:"Deeper Love",
-                    mp3:"music/DEEPER LOVE DESK MIX 7.7.13.mp3",
-                }
-    ], {
-        swfPath: "js",
-        supplied: "oga, mp3",
-        wmode: "window",
-        smoothPlayBar: true,
-        keyEnabled: false
-    });
-});
-//]]>
-</script>
-
-
+                new jPlayerPlaylist({
+                    jPlayer: "#jquery_jplayer_1",
+                    cssSelectorAncestor: "#jp_container_1"
+                }, [
+                    {
+                                title:"Beneath the World",
+                                mp3:"music/IntroAndBeneath.mp3",
+                            },
+                            {
+                                title:"Joy and Pain",
+                                mp3:"music/JOY & PAIN MM4.mp3",
+                            },
+                            {
+                                title:"Sky Man",
+                                mp3:"music/SKY MAN MM5.mp3",
+                            },
+                            {
+                                title:"Turning To White",
+                                mp3:"music/turning to white aug 2.mp3",
+                            },
+                            {
+                                title:"I Love You Too",
+                                mp3:"music/I LOVE YOU TOO MM3.mp3",
+                            },
+                            {
+                                title:"Caravan Park",
+                                mp3:"music/CARAVAN PARK DOM MIX 1.mp3",
+                            },
+                            {
+                                title:"Too High",
+                                mp3:"music/TOO HIGH COMP.mp3",
+                            },
+                            {
+                                title:"Step into the Light",
+                                mp3:"music/STEP INTO THE LIGHT MM COMP.mp3",
+                            },
+                            {
+                                title:"Eyes of Love",
+                                mp3:"music/SKY MAN MM5.mp3",
+                            },
+                            {
+                                title:"Deeper Love",
+                                mp3:"music/DEEPER LOVE DESK MIX 7.7.13.mp3",
+                            }
+                ], {
+                    swfPath: "js",
+                    supplied: "oga, mp3",
+                    wmode: "window",
+                    smoothPlayBar: true,
+                    keyEnabled: false
+                });
+            });
+            //]]>
+        </script>
 
 
 
-
-
-
-
-
-
-
-			<div class="wrapper"><a href="#" class="close" style="display: none;">Close</a><div class="inner"><div class="wrapper"></div></div></div></div>
-
-
-
-
-
-
-
-
-
+		<div class="wrapper"><a href="#" class="close" style="display: none;">Close</a><div class="inner"><div class="wrapper"></div></div></div></div>
 
 	</body>
 

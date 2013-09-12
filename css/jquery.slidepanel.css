@@ -15,8 +15,8 @@
             box-shadow: 1px 1px 23px rgba(0, 0, 0, 0.17), 1px 1px 0 rgba(255, 255, 255, 0.85) inset;
         }
         .cb_slide_panel.panel_top, .cb_slide_panel.panel_bottom {
-            height: 60%;
-            width: 420px;
+            height: 17%;
+            width: 35%;
         }
         .cb_slide_panel.panel_top {
             box-shadow: 1px 1px 23px rgba(0, 0, 0, 0.17), -1px -1px 0 rgba(255, 255, 255, 0.85) inset;

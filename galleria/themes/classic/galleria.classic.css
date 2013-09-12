@@ -6,7 +6,17 @@
     position: relative;
     overflow: hidden;
     background-image:url('subtle_white_feathers.png');
+        -webkit-transition: background 30s linear;
+    -moz-transition: background 30s linear;
+    transition: background 30s linear;
 }
+
+.galleria-container:hover {
+    position: relative;
+    overflow: hidden;
+    background-image:url('subtle_black_feathers.png');
+}
+
 .galleria-container img {
     -moz-user-select: none;
     -webkit-user-select: none;
